@@ -22,11 +22,9 @@ cd WiPhish
 ```bash
 chmod +x start.sh
 ./start.sh
-
---------------------
+```
 ### My Information
 
-```
 **Youtube:** https://www.youtube.com/@AOHTechCybersecurity  
 **Website:** https://aohtech.netlify.app/  
 **Instagram:** https://www.instagram.com/ankit_com6  
