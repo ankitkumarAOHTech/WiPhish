@@ -25,7 +25,7 @@ chmod +x start.sh
 
 ### 🔁 My Information
 
-**Youtube :** https://www.youtube.com/@AOHTechCyberSecurity
+**Youtube:** https://www.youtube.com/@AOHTechCyberSecurity
 Website : https://aohtech.netlify.app/
 Instagram : https://www.instagram.com/ankit_com6
 Contact : +91 9241140133
