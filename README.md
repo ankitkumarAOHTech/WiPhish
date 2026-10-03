@@ -23,6 +23,7 @@ cd WiPhish
 chmod +x start.sh
 ./start.sh
 
+--------------------
 ### My Information
 
 ```
