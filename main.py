@@ -9,10 +9,10 @@ def redirect_to_youtube():
     banner = '''
 \033[1;32m╭──────────────────────────────────────────────────────────╮
 │                                                          │
-│        \033[1;31mHCO WiPhish\033[1;32m - WiFi Credential Capture Tool        │
+│        \033[1;31m WiPhish\033[1;32m - WiFi Credential Capture Tool        │
 │                                                          │
 │   \033[1;33m[!] This tool is not free. Subscribe to continue.         \033[1;32m│
-│   \033[1;36m[>] Redirecting to Hackers Colony YouTube...              \033[1;32m│
+│   \033[1;36m[>] Redirecting to AOH Tech Cyber Security YouTube...              \033[1;32m│
 │                                                          │
 ╰──────────────────────────────────────────────────────────╯
 '''
