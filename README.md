@@ -23,9 +23,8 @@ cd WiPhish
 chmod +x start.sh
 ./start.sh
 
-### 🔁 My Information
-
-**Youtube:** https://www.youtube.com/@AOHTechCyberSecurity
-Website : https://aohtech.netlify.app/
-Instagram : https://www.instagram.com/ankit_com6
-Contact : +91 9241140133
+### My Information
+**Youtube:** [AOHTechCybersecurity](https://www.youtube.com/@AOHTechCybersecurity)
+**Website:** [AOH Tech](https://aohtech.netlify.app/)
+**Instagram:** [ankit__com6](https://www.instagram.com/ankit__com6)
+**Contact:** +91 9241140133
