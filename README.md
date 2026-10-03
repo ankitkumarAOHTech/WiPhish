@@ -22,3 +22,5 @@ cd WiPhish
 ```bash
 chmod +x start.sh
 ./start.sh
+
+##--------------------------------
